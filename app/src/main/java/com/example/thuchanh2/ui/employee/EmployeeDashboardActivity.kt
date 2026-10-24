@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.thuchanh2.data.AppDatabase
 import com.example.thuchanh2.data.entity.WorkLog
 import com.example.thuchanh2.databinding.ActivityEmployeeDashboardBinding
+import com.example.thuchanh2.ui.auth.LoginActivity
 import com.example.thuchanh2.utils.SessionManager
 import com.example.thuchanh2.utils.WorkHelper
 
@@ -22,7 +23,6 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Khu vực Nhân viên"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         db = AppDatabase.getInstance(this)
         session = SessionManager(this)
@@ -42,14 +42,14 @@ class EmployeeDashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, AttendanceHistoryActivity::class.java))
         }
 
-        binding.btnBack.setOnClickListener {
+        binding.btnLogout.setOnClickListener {
+            session.logout()
+            val intent = Intent(this, LoginActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
             finish()
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 
     private fun handleCheckIn() {

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.thuchanh2.data.entity.Employee
 
 class EmployeeDao(private val db: SQLiteDatabase) {
+
     fun getEmployeeById(id: Int): Employee? {
         val cursor = db.query(
             "Employee",
@@ -29,6 +30,27 @@ class EmployeeDao(private val db: SQLiteDatabase) {
             cursor.close()
             null
         }
+    }
+
+    fun getEmployeeByAccountId(accountId: Int): Employee? {
+        val cursor = db.rawQuery(
+            "SELECT * FROM Employee WHERE accountId = ? LIMIT 1",
+            arrayOf(accountId.toString())
+        )
+        var emp: Employee? = null
+        if (cursor.moveToFirst()) {
+            emp = Employee(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                code = cursor.getString(cursor.getColumnIndexOrThrow("code")),
+                fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname")),
+                email = cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                phone = cursor.getString(cursor.getColumnIndexOrThrow("phone")),
+                hourlyRate = cursor.getDouble(cursor.getColumnIndexOrThrow("hourlyRate")),
+                accountId = cursor.getInt(cursor.getColumnIndexOrThrow("accountId"))
+            )
+        }
+        cursor.close()
+        return emp
     }
 
     fun getAllEmployees(): List<Employee> {

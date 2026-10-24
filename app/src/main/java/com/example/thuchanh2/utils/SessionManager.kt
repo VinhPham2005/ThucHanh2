@@ -1,9 +1,11 @@
 package com.example.thuchanh2.utils
 
 import android.content.Context
+import android.content.SharedPreferences
 
 class SessionManager(context: Context) {
-    private val prefs = context.getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences =
+        context.getSharedPreferences("USER_SESSION", Context.MODE_PRIVATE)
 
     fun saveLoginSession(accountId: Int, employeeId: Int, username: String, role: String) {
         prefs.edit().apply {
@@ -16,9 +18,10 @@ class SessionManager(context: Context) {
         }
     }
 
-    fun getRole(): String? = prefs.getString("ROLE", null)
+    fun getAccountId(): Int = prefs.getInt("ACCOUNT_ID", -1)
     fun getEmployeeId(): Int = prefs.getInt("EMPLOYEE_ID", -1)
     fun getUsername(): String? = prefs.getString("USERNAME", "")
+    fun getRole(): String? = prefs.getString("ROLE", null)
     fun isLoggedIn(): Boolean = prefs.getBoolean("IS_LOGGED_IN", false)
 
     fun logout() {

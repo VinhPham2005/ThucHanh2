@@ -9,9 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
 
-        <!-- Màn hình chọn chế độ Test -->
+        <!-- Màn hình Đăng nhập (Khởi chạy ứng dụng) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,19 @@
             </intent-filter>
         </activity>
 
-        <!-- Các màn hình Admin -->
+        <!-- Màn hình Admin -->
+        <activity android:name=".ui.admin.AdminDashboardActivity" android:exported="false" />
         <activity android:name=".ui.admin.EmployeeManageActivity" android:exported="false" />
         <activity android:name=".ui.admin.EmployeeFormActivity" android:exported="false" />
         <activity android:name=".ui.admin.AdminSalaryActivity" android:exported="false" />
 
-        <!-- Các màn hình Employee -->
+        <!-- Màn hình Employee -->
         <activity android:name=".ui.employee.EmployeeDashboardActivity" android:exported="false" />
         <activity android:name=".ui.employee.EmployeeSalaryActivity" android:exported="false" />
         <activity android:name=".ui.employee.AttendanceHistoryActivity" android:exported="false" />
+
+        <!-- Màn hình Test phụ (nếu cần) -->
+        <activity android:name=".MainActivity" android:exported="false" />
 
     </application>
 </manifest>

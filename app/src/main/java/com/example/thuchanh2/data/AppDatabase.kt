@@ -68,6 +68,29 @@ class AppDatabase private constructor(context: Context) :
         db.execSQL("INSERT INTO Account (username, password, role) VALUES ('admin', '123', 'ADMIN')")
     }
 
+    override fun onOpen(db: SQLiteDatabase) {
+        super.onOpen(db)
+        // Đảm bảo có tài khoản Admin
+        val adminCursor = db.rawQuery("SELECT id FROM Account WHERE username = 'admin'", null)
+        if (!adminCursor.moveToFirst()) {
+            db.execSQL("INSERT INTO Account (username, password, role) VALUES ('admin', '123', 'ADMIN')")
+        }
+        adminCursor.close()
+
+        // Đảm bảo có sẵn 1 tài khoản nhân viên mẫu để test ngay lập tức: NV01 / 123
+        val empCursor = db.rawQuery("SELECT id FROM Account WHERE username = 'NV01'", null)
+        if (!empCursor.moveToFirst()) {
+            db.execSQL("INSERT INTO Account (username, password, role) VALUES ('NV01', '123', 'EMPLOYEE')")
+            val idCursor = db.rawQuery("SELECT id FROM Account WHERE username = 'NV01'", null)
+            if (idCursor.moveToFirst()) {
+                val accId = idCursor.getInt(0)
+                db.execSQL("INSERT INTO Employee (code, fullname, email, phone, hourlyRate, accountId) VALUES ('NV01', 'Nguyễn Văn A', 'nva@company.com', '0912345678', 50000.0, $accId)")
+            }
+            idCursor.close()
+        }
+        empCursor.close()
+    }
+
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS Account")
         db.execSQL("DROP TABLE IF EXISTS Employee")

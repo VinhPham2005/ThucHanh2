@@ -43,12 +43,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Xem Lịch sử Điểm danh"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp" />
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/btnLogout"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Quay lại Màn hình chính" />
+        android:layout_height="52dp"
+        android:text="Đăng xuất"
+        android:textColor="#D32F2F"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 </LinearLayout>
