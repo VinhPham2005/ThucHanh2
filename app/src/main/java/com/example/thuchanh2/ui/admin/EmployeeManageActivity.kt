@@ -34,6 +34,10 @@ class EmployeeManageActivity : AppCompatActivity() {
             startActivity(Intent(this, EmployeeFormActivity::class.java))
         }
 
+        binding.btnSalaryManagement.setOnClickListener {
+            startActivity(Intent(this, AdminSalaryActivity::class.java))
+        }
+
         binding.edtSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val keyword = s.toString()

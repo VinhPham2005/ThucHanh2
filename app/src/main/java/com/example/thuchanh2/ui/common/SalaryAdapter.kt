@@ -1,13 +1,13 @@
-package com.example.myapplication.ui.common
+package com.example.thuchanh2.ui.common
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.entity.Employee
-import com.example.myapplication.data.entity.Salary
-import com.example.myapplication.databinding.ItemSalaryBinding
+import com.example.thuchanh2.data.entity.Employee
+import com.example.thuchanh2.data.entity.Salary
+import com.example.thuchanh2.databinding.ItemSalaryBinding
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -37,19 +37,19 @@ class SalaryAdapter(
 
         with(holder.binding) {
             tvEmployeeName.text = if (emp != null) {
-                "${emp.code} - ${emp.fullName}"
+                "${emp.code} - ${emp.fullname}"
             } else {
                 "Nhân viên ID #${salary.employeeId}"
             }
 
-            tvMonthYear.text = String.format("Tháng %02d/%d", salary.month, salary.year)
+            tvMonthYear.text = String.format(Locale.getDefault(), "Tháng %02d/%d", salary.month, salary.year)
 
             val rateFormatted = currencyFormat.format(emp?.hourlyRate ?: 0.0)
             tvHourlyRate.text = "Lương giờ: $rateFormatted đ/h | Hệ số OT: x1.5"
 
             val regularHours = (salary.totalHours - salary.overtimeHours).coerceAtLeast(0.0)
-            tvTotalHours.text = String.format("Tổng giờ: %.2fh (Thường: %.2fh)", salary.totalHours, regularHours)
-            tvOvertimeHours.text = String.format("Tăng ca (OT): %.2fh", salary.overtimeHours)
+            tvTotalHours.text = String.format(Locale.getDefault(), "Tổng giờ: %.2fh (Thường: %.2fh)", salary.totalHours, regularHours)
+            tvOvertimeHours.text = String.format(Locale.getDefault(), "Tăng ca (OT): %.2fh", salary.overtimeHours)
 
             tvTotalSalary.text = "Tổng lương: ${currencyFormat.format(salary.totalSalary)} đ"
 

@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.thuchanh2.data.AppDatabase
+import com.example.thuchanh2.ui.admin.AdminSalaryActivity
 import com.example.thuchanh2.ui.admin.EmployeeManageActivity
 import com.example.thuchanh2.ui.employee.EmployeeDashboardActivity
 import com.example.thuchanh2.utils.SessionManager
@@ -19,10 +20,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, EmployeeManageActivity::class.java))
         }
 
+        findViewById<Button>(R.id.btnAdminSalary).setOnClickListener {
+            startActivity(Intent(this, AdminSalaryActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnEmployeeMode).setOnClickListener {
             val db = AppDatabase.getInstance(this)
             val session = SessionManager(this)
-            
+
             // Giả lập đăng nhập cho nhân viên đầu tiên trong database để test
             val employees = db.employeeDao().getAllEmployees()
             if (employees.isNotEmpty()) {

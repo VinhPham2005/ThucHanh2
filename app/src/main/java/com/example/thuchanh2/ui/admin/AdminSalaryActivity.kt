@@ -1,14 +1,14 @@
-package com.example.myapplication.ui.admin
+package com.example.thuchanh2.ui.admin
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.entity.Salary
-import com.example.myapplication.databinding.ActivityAdminSalaryBinding
-import com.example.myapplication.ui.common.SalaryAdapter
-import com.example.myapplication.utils.WorkHelper
+import com.example.thuchanh2.data.AppDatabase
+import com.example.thuchanh2.data.entity.Salary
+import com.example.thuchanh2.databinding.ActivityAdminSalaryBinding
+import com.example.thuchanh2.ui.common.SalaryAdapter
+import com.example.thuchanh2.utils.WorkHelper
 import java.text.NumberFormat
 import java.util.Locale
 

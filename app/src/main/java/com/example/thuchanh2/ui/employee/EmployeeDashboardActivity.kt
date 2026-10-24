@@ -31,9 +31,11 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         binding.btnCheckIn.setOnClickListener { handleCheckIn() }
         binding.btnCheckOut.setOnClickListener { handleCheckOut() }
 
+        binding.btnSalary.setOnClickListener {
+            startActivity(Intent(this, EmployeeSalaryActivity::class.java))
+        }
+
         binding.btnHistory.setOnClickListener {
-            // Chuyển sang AttendanceHistoryActivity (Bạn tự tạo RecyclerView hiển thị List<WorkLog>)
-            // startActivity(Intent(this, AttendanceHistoryActivity::class.java))
             Toast.makeText(this, "Đang mở lịch sử...", Toast.LENGTH_SHORT).show()
         }
     }
@@ -86,6 +88,15 @@ class EmployeeDashboardActivity : AppCompatActivity() {
             status = "COMPLETED"
         )
         db.workLogDao().updateWorkLog(updatedLog)
+
+        // Tự động cập nhật bảng lương tháng
+        val parts = today.split("-")
+        if (parts.size >= 2) {
+            val year = parts[0].toIntOrNull() ?: WorkHelper.getCurrentYear()
+            val month = parts[1].toIntOrNull() ?: WorkHelper.getCurrentMonth()
+            WorkHelper.calculateAndSaveMonthlySalary(db, empId, month, year)
+        }
+
         Toast.makeText(this, "Check-out thành công! Tổng giờ: $totalHours", Toast.LENGTH_LONG).show()
     }
 }

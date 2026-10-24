@@ -5,16 +5,15 @@ import android.database.sqlite.SQLiteDatabase
 import com.example.thuchanh2.data.entity.WorkLog
 
 class WorkLogDao(private val db: SQLiteDatabase) {
+
     fun getWorkLogByDate(empId: Int, date: String): WorkLog? {
-        val cursor = db.query(
-            "WorkLog",
-            null,
-            "employeeId = ? AND workDate = ?",
-            arrayOf(empId.toString(), date),
-            null, null, null
+        val cursor = db.rawQuery(
+            "SELECT * FROM WorkLog WHERE employeeId = ? AND workDate = ? LIMIT 1",
+            arrayOf(empId.toString(), date)
         )
-        return if (cursor.moveToFirst()) {
-            val log = WorkLog(
+        var log: WorkLog? = null
+        if (cursor.moveToFirst()) {
+            log = WorkLog(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                 employeeId = cursor.getInt(cursor.getColumnIndexOrThrow("employeeId")),
                 workDate = cursor.getString(cursor.getColumnIndexOrThrow("workDate")),
@@ -23,12 +22,9 @@ class WorkLogDao(private val db: SQLiteDatabase) {
                 totalHours = cursor.getDouble(cursor.getColumnIndexOrThrow("totalHours")),
                 status = cursor.getString(cursor.getColumnIndexOrThrow("status"))
             )
-            cursor.close()
-            log
-        } else {
-            cursor.close()
-            null
         }
+        cursor.close()
+        return log
     }
 
     fun insertWorkLog(workLog: WorkLog): Long {
@@ -50,5 +46,51 @@ class WorkLogDao(private val db: SQLiteDatabase) {
             put("status", workLog.status)
         }
         return db.update("WorkLog", values, "id = ?", arrayOf(workLog.id.toString()))
+    }
+
+    fun getAttendanceHistory(empId: Int): List<WorkLog> {
+        val list = mutableListOf<WorkLog>()
+        val cursor = db.rawQuery(
+            "SELECT * FROM WorkLog WHERE employeeId = ? ORDER BY workDate DESC",
+            arrayOf(empId.toString())
+        )
+        while (cursor.moveToNext()) {
+            list.add(
+                WorkLog(
+                    id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                    employeeId = cursor.getInt(cursor.getColumnIndexOrThrow("employeeId")),
+                    workDate = cursor.getString(cursor.getColumnIndexOrThrow("workDate")),
+                    checkInTime = cursor.getString(cursor.getColumnIndexOrThrow("checkInTime")),
+                    checkOutTime = cursor.getString(cursor.getColumnIndexOrThrow("checkOutTime")),
+                    totalHours = cursor.getDouble(cursor.getColumnIndexOrThrow("totalHours")),
+                    status = cursor.getString(cursor.getColumnIndexOrThrow("status"))
+                )
+            )
+        }
+        cursor.close()
+        return list
+    }
+
+    fun getMonthlyCompletedLogs(empId: Int, yearMonth: String): List<WorkLog> {
+        val list = mutableListOf<WorkLog>()
+        val cursor = db.rawQuery(
+            "SELECT * FROM WorkLog WHERE employeeId = ? AND workDate LIKE ? AND status = 'COMPLETED'",
+            arrayOf(empId.toString(), "$yearMonth%")
+        )
+        while (cursor.moveToNext()) {
+            list.add(
+                WorkLog(
+                    id = cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                    employeeId = cursor.getInt(cursor.getColumnIndexOrThrow("employeeId")),
+                    workDate = cursor.getString(cursor.getColumnIndexOrThrow("workDate")),
+                    checkInTime = cursor.getString(cursor.getColumnIndexOrThrow("checkInTime")),
+                    checkOutTime = cursor.getString(cursor.getColumnIndexOrThrow("checkOutTime")),
+                    totalHours = cursor.getDouble(cursor.getColumnIndexOrThrow("totalHours")),
+                    status = cursor.getString(cursor.getColumnIndexOrThrow("status"))
+                )
+            )
+        }
+        cursor.close()
+        return list
     }
 }

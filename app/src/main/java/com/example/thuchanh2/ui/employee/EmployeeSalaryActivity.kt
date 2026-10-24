@@ -1,14 +1,14 @@
-package com.example.myapplication.ui.employee
+package com.example.thuchanh2.ui.employee
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.databinding.ActivityEmployeeSalaryBinding
-import com.example.myapplication.ui.common.SalaryAdapter
-import com.example.myapplication.utils.SessionManager
-import com.example.myapplication.utils.WorkHelper
+import com.example.thuchanh2.data.AppDatabase
+import com.example.thuchanh2.databinding.ActivityEmployeeSalaryBinding
+import com.example.thuchanh2.ui.common.SalaryAdapter
+import com.example.thuchanh2.utils.SessionManager
+import com.example.thuchanh2.utils.WorkHelper
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -71,13 +71,13 @@ class EmployeeSalaryActivity : AppCompatActivity() {
 
         val selectedSalary = WorkHelper.calculateAndSaveMonthlySalary(db, employeeId, month, year)
 
-        binding.tvCardTitle.text = String.format("CHI TIẾT LƯƠNG THÁNG %02d/%d", month, year)
+        binding.tvCardTitle.text = String.format(Locale.getDefault(), "CHI TIẾT LƯƠNG THÁNG %02d/%d", month, year)
         binding.tvEmpInfo.text =
-            "NV: ${emp.code} - ${emp.fullName} | Đơn giá: ${currencyFormat.format(emp.hourlyRate)} đ/giờ"
+            "NV: ${emp.code} - ${emp.fullname} | Đơn giá: ${currencyFormat.format(emp.hourlyRate)} đ/giờ"
 
         if (selectedSalary != null) {
-            binding.tvCurrentTotalHours.text = String.format("Tổng giờ: %.2fh", selectedSalary.totalHours)
-            binding.tvCurrentOvertime.text = String.format("Tăng ca (OT): %.2fh", selectedSalary.overtimeHours)
+            binding.tvCurrentTotalHours.text = String.format(Locale.getDefault(), "Tổng giờ: %.2fh", selectedSalary.totalHours)
+            binding.tvCurrentOvertime.text = String.format(Locale.getDefault(), "Tăng ca (OT): %.2fh", selectedSalary.overtimeHours)
             binding.tvCurrentTotalSalary.text =
                 "TỔNG LƯƠNG: ${currencyFormat.format(selectedSalary.totalSalary)} đ (${selectedSalary.status})"
         }

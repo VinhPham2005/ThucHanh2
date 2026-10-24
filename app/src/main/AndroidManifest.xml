@@ -22,9 +22,11 @@
         <!-- Các màn hình Admin -->
         <activity android:name=".ui.admin.EmployeeManageActivity" android:exported="false" />
         <activity android:name=".ui.admin.EmployeeFormActivity" android:exported="false" />
+        <activity android:name=".ui.admin.AdminSalaryActivity" android:exported="false" />
 
         <!-- Các màn hình Employee -->
         <activity android:name=".ui.employee.EmployeeDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.employee.EmployeeSalaryActivity" android:exported="false" />
 
     </application>
 </manifest>

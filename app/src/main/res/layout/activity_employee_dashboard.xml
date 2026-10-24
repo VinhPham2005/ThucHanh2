@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="24dp" android:gravity="center_horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
 
-    <TextView android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:textSize="22sp" android:textStyle="bold" android:layout_marginBottom="32dp"/>
-
-    <Button android:id="@+id/btnCheckIn"
-        android:layout_width="match_parent" android:layout_height="60dp"
-        android:text="CHECK-IN (VÀO CA)" android:backgroundTint="#4CAF50"
-        android:layout_marginBottom="16dp"/>
-
-    <Button android:id="@+id/btnCheckOut"
-        android:layout_width="match_parent" android:layout_height="60dp"
-        android:text="CHECK-OUT (TAN CA)" android:backgroundTint="#F44336"
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
 
-    <Button android:id="@+id/btnHistory"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/btnCheckIn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="CHECK-IN (VÀO CA)"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnCheckOut"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="CHECK-OUT (TAN CA)"
+        android:backgroundTint="#F44336"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnSalary"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Xem Bảng Lương &amp; Giờ OT"
+        android:backgroundTint="#00796B"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Xem Lịch sử Điểm danh" />
 </LinearLayout>

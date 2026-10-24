@@ -8,4 +8,7 @@ data class Employee(
     val phone: String,
     val hourlyRate: Double,
     val accountId: Int
-)
+) {
+    val fullName: String
+        get() = fullname
+}

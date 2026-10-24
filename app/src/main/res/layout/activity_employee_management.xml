@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/edtSearch"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Tìm theo tên hoặc mã NV..."
         android:drawablePadding="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEmployees"
-        android:layout_width="match_parent" android:layout_height="0dp"
-        android:layout_weight="1" android:layout_marginTop="16dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnAdd"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Thêm Nhân viên mới" />
+
+    <Button
+        android:id="@+id/btnSalaryManagement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#00796B"
+        android:text="Quản lý &amp; Tính Bảng Lương" />
 </LinearLayout>
