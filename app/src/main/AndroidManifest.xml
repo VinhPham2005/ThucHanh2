@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.admin.AdminSalaryActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.admin.EmployeeManageActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.employee.EmployeeDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.employee.EmployeeSalaryActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

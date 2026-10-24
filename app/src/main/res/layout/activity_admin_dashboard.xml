@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Thẻ hiển thị thông tin tài khoản Admin đọc từ SharedPreferences -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A237E"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvAdminWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xin chào, Quản trị viên (ADMIN)"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAdminSessionInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Tài khoản: admin | Role: ADMIN"
+                android:textColor="#C5CAE9"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp"
+        android:text="CHỨC NĂNG QUẢN TRỊ HỆ THỐNG"
+        android:textColor="#616161"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- Chức năng 1 của Admin: Quản lý Nhân viên (Thêm, sửa, xóa, tìm kiếm, lương giờ) -->
+    <Button
+        android:id="@+id/btnManageEmployees"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="#1976D2"
+        android:text="1. Quản lý Hồ sơ Nhân viên &amp; Lương giờ"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <!-- Chức năng 2 của Admin: Quản lý Lương & Tính lương tự động -->
+    <Button
+        android:id="@+id/btnManageSalaries"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#2E7D32"
+        android:text="2. Quản lý Bảng lương &amp; Duyệt thanh toán"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Nút Đăng xuất (Xóa phiên đăng nhập trong SharedPreferences) -->
+    <Button
+        android:id="@+id/btnAdminLogout"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Đăng xuất tài khoản"
+        android:textColor="#D32F2F" />
+
+</LinearLayout>
