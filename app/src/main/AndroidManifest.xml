@@ -27,6 +27,7 @@
         <!-- Các màn hình Employee -->
         <activity android:name=".ui.employee.EmployeeDashboardActivity" android:exported="false" />
         <activity android:name=".ui.employee.EmployeeSalaryActivity" android:exported="false" />
+        <activity android:name=".ui.employee.AttendanceHistoryActivity" android:exported="false" />
 
     </application>
 </manifest>

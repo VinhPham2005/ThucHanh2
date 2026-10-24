@@ -39,7 +39,7 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         }
 
         binding.btnHistory.setOnClickListener {
-            Toast.makeText(this, "Đang mở lịch sử...", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, AttendanceHistoryActivity::class.java))
         }
 
         binding.btnBack.setOnClickListener {

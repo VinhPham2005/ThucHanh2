@@ -1,5 +1,6 @@
 package com.example.thuchanh2.ui.admin
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import com.example.thuchanh2.data.AppDatabase
 import com.example.thuchanh2.data.entity.Account
 import com.example.thuchanh2.data.entity.Employee
 import com.example.thuchanh2.databinding.ActivityEmployeeFormBinding
+import com.example.thuchanh2.ui.employee.AttendanceHistoryActivity
 
 class EmployeeFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEmployeeFormBinding
@@ -27,12 +29,18 @@ class EmployeeFormActivity : AppCompatActivity() {
             supportActionBar?.title = "Sửa Thông Tin Nhân Viên"
             loadEmployeeData()
             binding.btnDelete.visibility = android.view.View.VISIBLE
+            binding.btnAttendanceHistory.visibility = android.view.View.VISIBLE
         } else {
             supportActionBar?.title = "Thêm Nhân Viên Mới"
         }
 
         binding.btnSave.setOnClickListener { saveEmployee() }
         binding.btnDelete.setOnClickListener { deleteEmployee() }
+        binding.btnAttendanceHistory.setOnClickListener {
+            val intent = Intent(this, AttendanceHistoryActivity::class.java)
+            intent.putExtra("EMP_ID", currentEmpId)
+            startActivity(intent)
+        }
         binding.btnBack.setOnClickListener { finish() }
     }
 
