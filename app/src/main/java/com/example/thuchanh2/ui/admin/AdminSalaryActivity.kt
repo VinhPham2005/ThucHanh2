@@ -22,7 +22,9 @@ class AdminSalaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminSalaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         supportActionBar?.title = "Quản lý Bảng lương (Admin)"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         db = AppDatabase.getInstance(this)
 
@@ -54,6 +56,11 @@ class AdminSalaryActivity : AppCompatActivity() {
             isFilteredByMonth = false
             loadSalaryRecords()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun setupRecyclerView() {

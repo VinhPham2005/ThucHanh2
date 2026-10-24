@@ -21,6 +21,9 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         binding = ActivityEmployeeDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Khu vực Nhân viên"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         db = AppDatabase.getInstance(this)
         session = SessionManager(this)
         empId = session.getEmployeeId()
@@ -38,6 +41,15 @@ class EmployeeDashboardActivity : AppCompatActivity() {
         binding.btnHistory.setOnClickListener {
             Toast.makeText(this, "Đang mở lịch sử...", Toast.LENGTH_SHORT).show()
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun handleCheckIn() {

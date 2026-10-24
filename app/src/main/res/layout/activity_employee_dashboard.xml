@@ -42,5 +42,13 @@
         android:id="@+id/btnHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Xem Lịch sử Điểm danh" />
+        android:text="Xem Lịch sử Điểm danh"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quay lại Màn hình chính" />
 </LinearLayout>

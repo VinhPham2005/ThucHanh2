@@ -23,7 +23,9 @@ class EmployeeSalaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployeeSalaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         supportActionBar?.title = "Chi tiết Lương & Giờ làm"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         db = AppDatabase.getInstance(this)
         val session = SessionManager(this)
@@ -53,6 +55,11 @@ class EmployeeSalaryActivity : AppCompatActivity() {
             }
             updateAndDisplaySalary(m, y)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun setupRecyclerView() {

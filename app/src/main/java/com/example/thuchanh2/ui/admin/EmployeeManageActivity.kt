@@ -19,6 +19,9 @@ class EmployeeManageActivity : AppCompatActivity() {
         binding = ActivityEmployeeManagementBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Quản lý Nhân viên"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         db = AppDatabase.getInstance(this)
 
         adapter = EmployeeAdapter(emptyList()) { emp ->
@@ -47,6 +50,11 @@ class EmployeeManageActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     override fun onResume() {

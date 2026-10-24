@@ -15,20 +15,30 @@ class EmployeeFormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Lưu ý: Cần tạo activity_employee_form.xml với 5 EditText tương ứng
         binding = ActivityEmployeeFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         db = AppDatabase.getInstance(this)
         currentEmpId = intent.getIntExtra("EMP_ID", -1)
 
         if (currentEmpId != -1) {
+            supportActionBar?.title = "Sửa Thông Tin Nhân Viên"
             loadEmployeeData()
             binding.btnDelete.visibility = android.view.View.VISIBLE
+        } else {
+            supportActionBar?.title = "Thêm Nhân Viên Mới"
         }
 
         binding.btnSave.setOnClickListener { saveEmployee() }
         binding.btnDelete.setOnClickListener { deleteEmployee() }
+        binding.btnBack.setOnClickListener { finish() }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun loadEmployeeData() {
